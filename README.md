@@ -30,6 +30,7 @@ Proyecto simple orientado a portfolio: limpio, entendible y con un flujo de comm
 
 ## 📁 Estructura del proyecto
 
+```text
 service-visits-mvp/
 ├── backend/
 │   ├── server.js
@@ -46,6 +47,7 @@ service-visits-mvp/
 │   ├── styles.css
 │   └── app.js
 └── screenshots/
+
 
 ---
 
