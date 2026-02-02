@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const clientsRouter = require("./routes/clients");
+const visitsRouter = require("./routes/visits");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/clients", clientsRouter);
+app.use("/api/visits", visitsRouter);
 
 app.listen(PORT, () => {
   console.log(`API listening on http://localhost:${PORT}`);
