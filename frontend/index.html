@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Tech Visits Manager</h1>
-  <p class="subtitle">Frontend simple para gestionar clientes (MVP)</p>
+  <p class="subtitle">Frontend simple para gestionar clientes y visitas (MVP)</p>
 
   <div id="status" class="status" aria-live="polite"></div>
 
@@ -45,6 +45,44 @@
       <button id="refresh" type="button" class="secondary">Refrescar</button>
     </div>
     <ul id="clients-list" class="list"></ul>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <h2>Visitas</h2>
+      <button id="refresh-visits" type="button" class="secondary">Refrescar Visitas</button>
+    </div>
+
+    <div class="grid">
+      <label>
+        Cliente
+        <select id="visit-client"></select>
+      </label>
+
+      <label>
+        Estado
+        <select id="visit-status">
+          <option value="pending">pending</option>
+          <option value="completed">completed</option>
+          <option value="cancelled">cancelled</option>
+        </select>
+      </label>
+
+      <label>
+        Fecha (opcional)
+        <input type="datetime-local" id="visit-date" />
+      </label>
+
+      <label>
+        Notas
+        <input type="text" id="visit-notes" placeholder="Revisión general / cambio de cebo / etc." />
+      </label>
+    </div>
+
+    <button id="create-visit" type="button">Crear Visita</button>
+
+    <h3 class="section-title">Visitas del cliente seleccionado</h3>
+    <ul id="visits-list" class="list"></ul>
   </section>
 
   <script src="app.js"></script>

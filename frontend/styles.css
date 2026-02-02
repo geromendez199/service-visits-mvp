@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  max-width: 760px;
+  max-width: 860px;
   margin: 40px auto;
   padding: 0 16px;
 }
@@ -26,7 +26,7 @@ label {
   margin: 10px 0;
 }
 
-input, button {
+input, select, button {
   padding: 10px;
   margin-top: 6px;
   width: 100%;
@@ -67,6 +67,22 @@ button.secondary {
   gap: 12px;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-title {
+  margin: 16px 0 0;
+}
+
 .list {
   padding: 0;
   margin: 10px 0 0;
@@ -78,24 +94,24 @@ button.secondary {
   border-bottom: 1px solid #eee;
 }
 
-.client-line {
+.client-line, .visit-line {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
 
-.client-meta {
+.client-meta, .visit-meta {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.client-name {
+.client-name, .visit-title {
   font-weight: 700;
 }
 
-.client-small {
+.client-small, .visit-small {
   font-size: 12px;
   opacity: 0.75;
 }
@@ -113,4 +129,13 @@ button.secondary {
 .danger {
   border: 1px solid #f1b6b6;
   background: #fff5f5;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  width: fit-content;
 }
