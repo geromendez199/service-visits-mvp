@@ -1,6 +1,6 @@
 # Tech Visits Manager (MVP)
 
-Mini sistema para registrar clientes y visitas técnicas.
+Mini sistema para registrar clientes y visitas técnicas.  
 Proyecto simple orientado a portfolio: limpio, entendible y con un flujo de commits realista.
 
 ---
@@ -47,33 +47,40 @@ service-visits-mvp/
 │   ├── styles.css
 │   └── app.js
 └── screenshots/
-
+```
 
 ---
 
 ## 🚀 Cómo ejecutar el proyecto
 
 ### 1) Backend
+
 Desde la raíz del repositorio:
 
+```bash
 cd backend
 npm install
 node server.js
+```
 
-El backend queda disponible en:
+El backend queda disponible en:  
 http://localhost:3000
 
 Endpoints de prueba:
-- GET /  
-- GET /health  
+- GET /
+- GET /health
 
 ---
 
 ### 2) Frontend
-Abrir el archivo:
-frontend/index.html
 
-El frontend consume la API desde:
+Abrir el archivo:
+
+```text
+frontend/index.html
+```
+
+El frontend consume la API desde:  
 http://localhost:3000
 
 ---
@@ -83,66 +90,78 @@ http://localhost:3000
 ### Clientes
 
 Listar clientes  
-GET /api/clients
+`GET /api/clients`
 
 Crear cliente  
-POST /api/clients
+`POST /api/clients`
 
 Body (JSON):
+```json
 {
   "name": "Juan Perez",
   "phone": "3492-123456",
   "address": "Rafaela",
   "notes": "Cliente nuevo"
 }
+```
 
 Eliminar cliente  
-DELETE /api/clients/:id
+`DELETE /api/clients/:id`
 
 ---
 
 ### Visitas
 
 Listar visitas  
-GET /api/visits
+`GET /api/visits`
 
 Listar visitas por cliente  
-GET /api/visits/client/:clientId
+`GET /api/visits/client/:clientId`
 
 Crear visita  
-POST /api/visits
+`POST /api/visits`
 
 Body (JSON):
+```json
 {
   "clientId": "CLIENT_ID_AQUI",
   "status": "completed",
   "notes": "Revisión general"
 }
+```
 
 Eliminar visita  
-DELETE /api/visits/:id
+`DELETE /api/visits/:id`
 
 ---
 
 ## 🧪 Ejemplos de pruebas (PowerShell)
 
 Crear cliente:
+```powershell
 Invoke-WebRequest -Uri http://localhost:3000/api/clients `
   -Method POST `
   -ContentType 'application/json' `
   -Body '{"name":"Juan Perez","phone":"3492-123456","address":"Rafaela","notes":"Cliente nuevo"}'
+```
 
 Listar clientes:
+```powershell
 Invoke-WebRequest -Uri http://localhost:3000/api/clients -Method GET
+```
 
 Crear visita:
+```powershell
 Invoke-WebRequest -Uri http://localhost:3000/api/visits `
   -Method POST `
   -ContentType 'application/json' `
   -Body '{"clientId":"CLIENT_ID_AQUI","status":"pending","notes":"Primera visita"}'
+```
 
 Listar visitas por cliente:
+```powershell
 Invoke-WebRequest -Uri http://localhost:3000/api/visits/client/CLIENT_ID_AQUI -Method GET
+```
 
 ---
 
