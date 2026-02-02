@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tech Visits Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Tech Visits Manager</h1>
+
+  <section>
+    <h2>Nuevo Cliente</h2>
+    <form id="client-form">
+      <input type="text" id="name" placeholder="Nombre" required />
+      <input type="text" id="phone" placeholder="Teléfono" />
+      <input type="text" id="address" placeholder="Dirección" />
+      <input type="text" id="notes" placeholder="Notas" />
+      <button type="submit">Guardar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Clientes</h2>
+    <ul id="clients-list"></ul>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
