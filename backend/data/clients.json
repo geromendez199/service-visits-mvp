@@ -1,10 +1,10 @@
 [
   {
-    "id": "2f82bfed-b708-4ebb-a17b-54249c1a2435",
-    "name": "Juan Perez",
-    "phone": "3492-123456",
-    "address": "Rafaela",
-    "notes": "Cliente nuevo",
-    "createdAt": "2026-02-02T15:01:58.796Z"
+    "id": "0c083333-74d7-4e0e-a100-9a7cdc7b3dac",
+    "name": "Geronimo Mendez",
+    "phone": "3492-680779",
+    "address": "Las Violetas 141",
+    "notes": "Cliente Nuevo",
+    "createdAt": "2026-02-02T17:19:13.190Z"
   }
 ]

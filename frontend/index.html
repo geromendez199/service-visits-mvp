@@ -2,26 +2,49 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Tech Visits Manager</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <h1>Tech Visits Manager</h1>
+  <p class="subtitle">Frontend simple para gestionar clientes (MVP)</p>
 
-  <section>
+  <div id="status" class="status" aria-live="polite"></div>
+
+  <section class="card">
     <h2>Nuevo Cliente</h2>
     <form id="client-form">
-      <input type="text" id="name" placeholder="Nombre" required />
-      <input type="text" id="phone" placeholder="Teléfono" />
-      <input type="text" id="address" placeholder="Dirección" />
-      <input type="text" id="notes" placeholder="Notas" />
+      <label>
+        Nombre (obligatorio)
+        <input type="text" id="name" placeholder="Juan Pérez" required />
+      </label>
+
+      <label>
+        Teléfono
+        <input type="text" id="phone" placeholder="3492-123456" />
+      </label>
+
+      <label>
+        Dirección
+        <input type="text" id="address" placeholder="Rafaela" />
+      </label>
+
+      <label>
+        Notas
+        <input type="text" id="notes" placeholder="Cliente nuevo / observaciones" />
+      </label>
+
       <button type="submit">Guardar</button>
     </form>
   </section>
 
-  <section>
-    <h2>Clientes</h2>
-    <ul id="clients-list"></ul>
+  <section class="card">
+    <div class="row">
+      <h2>Clientes</h2>
+      <button id="refresh" type="button" class="secondary">Refrescar</button>
+    </div>
+    <ul id="clients-list" class="list"></ul>
   </section>
 
   <script src="app.js"></script>
