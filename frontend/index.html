@@ -2,88 +2,139 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tech Visits Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Tech Visits Manager</h1>
-  <p class="subtitle">Frontend simple para gestionar clientes y visitas (MVP)</p>
-
-  <div id="status" class="status" aria-live="polite"></div>
-
-  <section class="card">
-    <h2>Nuevo Cliente</h2>
-    <form id="client-form">
-      <label>
-        Nombre (obligatorio)
-        <input type="text" id="name" placeholder="Juan Pérez" required />
-      </label>
-
-      <label>
-        Teléfono
-        <input type="text" id="phone" placeholder="3492-123456" />
-      </label>
-
-      <label>
-        Dirección
-        <input type="text" id="address" placeholder="Rafaela" />
-      </label>
-
-      <label>
-        Notas
-        <input type="text" id="notes" placeholder="Cliente nuevo / observaciones" />
-      </label>
-
-      <button type="submit">Guardar</button>
-    </form>
-  </section>
-
-  <section class="card">
-    <div class="row">
-      <h2>Clientes</h2>
-      <button id="refresh" type="button" class="secondary">Refrescar</button>
+  <header class="app-header">
+    <div>
+      <div class="header-top">
+        <h1>Tech Visits Manager</h1>
+        <span class="chip">MVP</span>
+      </div>
+      <p class="subtitle">Gestión moderna de clientes y visitas técnicas.</p>
     </div>
-    <ul id="clients-list" class="list"></ul>
-  </section>
+  </header>
 
-  <section class="card">
-    <div class="row">
-      <h2>Visitas</h2>
-      <button id="refresh-visits" type="button" class="secondary">Refrescar Visitas</button>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Nuevo Cliente</h2>
+          <p class="card-subtitle">Cargá los datos básicos para iniciar el historial.</p>
+        </div>
+      </div>
+
+      <form id="client-form" class="form-grid" novalidate>
+        <div class="field">
+          <label for="name">Nombre <span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Juan Pérez" required />
+          <p class="field-error" id="name-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="phone">Teléfono</label>
+          <input type="text" id="phone" name="phone" placeholder="3492-123456" />
+        </div>
+
+        <div class="field">
+          <label for="address">Dirección</label>
+          <input type="text" id="address" name="address" placeholder="Rafaela" />
+        </div>
+
+        <div class="field">
+          <label for="notes">Notas</label>
+          <input type="text" id="notes" name="notes" placeholder="Cliente nuevo / observaciones" />
+        </div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn btn-primary">Guardar cliente</button>
+          <span class="hint">* Campos obligatorios</span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-header row">
+        <div>
+          <h2>Clientes</h2>
+          <p class="card-subtitle">Seleccioná un cliente para ver y gestionar visitas.</p>
+        </div>
+        <button id="refresh" type="button" class="btn btn-secondary">Refrescar</button>
+      </div>
+      <ul id="clients-list" class="list" aria-live="polite"></ul>
+    </section>
+
+    <section class="card">
+      <div class="card-header row">
+        <div>
+          <h2>Visitas</h2>
+          <p class="card-subtitle">Registro de visitas técnicas por cliente.</p>
+        </div>
+        <button id="refresh-visits" type="button" class="btn btn-secondary">Refrescar</button>
+      </div>
+
+      <form id="visit-form" class="form-grid" novalidate>
+        <div class="field">
+          <label for="visit-client">Cliente</label>
+          <select id="visit-client" name="visit-client"></select>
+        </div>
+
+        <div class="field">
+          <label for="visit-status">Estado</label>
+          <select id="visit-status" name="visit-status">
+            <option value="pending">pending</option>
+            <option value="completed">completed</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="visit-date">Fecha (opcional)</label>
+          <input type="datetime-local" id="visit-date" name="visit-date" />
+        </div>
+
+        <div class="field">
+          <label for="visit-notes">Notas</label>
+          <input
+            type="text"
+            id="visit-notes"
+            name="visit-notes"
+            placeholder="Revisión general / cambio de cebo / etc."
+          />
+        </div>
+
+        <div class="actions-row">
+          <button id="create-visit" type="submit" class="btn btn-primary">Crear visita</button>
+          <span class="hint">Las visitas se ordenan por fecha descendente.</span>
+        </div>
+      </form>
+
+      <h3 class="section-title">Visitas del cliente seleccionado</h3>
+      <ul id="visits-list" class="list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <div id="confirm-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-content" role="document" aria-labelledby="confirm-title">
+      <h3 id="confirm-title"></h3>
+      <p id="confirm-message"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" data-modal-cancel>Cancelar</button>
+        <button type="button" class="btn btn-danger" data-modal-confirm>Confirmar</button>
+      </div>
     </div>
-
-    <div class="grid">
-      <label>
-        Cliente
-        <select id="visit-client"></select>
-      </label>
-
-      <label>
-        Estado
-        <select id="visit-status">
-          <option value="pending">pending</option>
-          <option value="completed">completed</option>
-          <option value="cancelled">cancelled</option>
-        </select>
-      </label>
-
-      <label>
-        Fecha (opcional)
-        <input type="datetime-local" id="visit-date" />
-      </label>
-
-      <label>
-        Notas
-        <input type="text" id="visit-notes" placeholder="Revisión general / cambio de cebo / etc." />
-      </label>
-    </div>
-
-    <button id="create-visit" type="button">Crear Visita</button>
-
-    <h3 class="section-title">Visitas del cliente seleccionado</h3>
-    <ul id="visits-list" class="list"></ul>
-  </section>
+  </div>
 
   <script src="app.js"></script>
 </body>
